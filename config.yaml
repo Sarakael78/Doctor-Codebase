@@ -1,0 +1,41 @@
+# Configuration file for the DoctorCodebase Documenter
+# This file defines the directories and file types to include or ignore,
+# as well as output formatting options for the generated documentation.
+
+directories:
+  cache: "./.cache"         # Directory for caching temporary data (relative to the project root)
+  ignore:                   # List of directory patterns to ignore during file collection.
+    - ".*"                  # Ignore any directory starting with a dot (e.g., .git, .env)
+    - "__pycache__"         # Ignore Python cache directories
+    - "venv"                # Ignore virtual environment directories
+    - "cache"               # Ignore generic cache directories
+    - "logs"                # Ignore directories containing log files
+    - "cd-output"           # Ignore the output directory where documentation is generated
+    - "output"              # Additional output directories that should be skipped
+    - "flagged"             # Custom directories (e.g., for flagged files)
+
+extensions:
+  code:                     # File extensions that are recognized as source code
+    - ".py"                # Python source files
+    - ".java"              # Java source files
+  other:                    # Additional file extensions to document (non-code files)
+    - ".cfg"               # Configuration files in CFG format
+    - ".ini"               # INI configuration files
+    - ".yaml"              # YAML files (common configuration files)
+    - ".yml"               # Alternate YAML file extension
+    - ".toml"              # TOML configuration files
+    - ".json"              # JSON files (data and configuration)
+    - ".md"                # Markdown documentation files
+    - "conf"               # Files named "conf" that might not have an extension
+
+files:
+  necessary:                # Specific files that should always be included, regardless of extension filters
+    - "requirements.txt"   # Python package requirements
+    - "Dockerfile"         # Docker build instructions
+    - ".dockerignore"     # Docker ignore rules
+    - ".gitignore"        # Git ignore rules
+
+output:
+  file_designation_pre_post_format: '##'    # String to prepend and append to file names in output documentation
+  file_name: 'DB-Doctor-Codebase'        # Base name for generated output files (typically the project name)
+  

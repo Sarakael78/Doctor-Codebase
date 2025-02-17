@@ -1,0 +1,15 @@
+version: "3.9"  # Docker Compose file version
+
+services:
+  doctorcodebase:
+    build:
+      context: ..                      # Use the repository root as the build context
+      dockerfile: docker/Dockerfile     # Specify the location of the Dockerfile
+    ports:
+      - "4444:4444"                    # Map port 7860 on the host to 7860 in the container
+    volumes:
+      - ../:/app                       # Mount the repository root into /app for live code updates
+      - "d:/DC:/app/DC"                # Mount D:\DC (with all subfolders) into /app/DC inside the container - change this folder to the folder your various projects are in
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=4444
