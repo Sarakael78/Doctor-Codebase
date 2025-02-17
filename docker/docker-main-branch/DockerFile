@@ -1,0 +1,34 @@
+# this version clones the latest main branch from github but otherwise remains the same
+
+
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Install system utilities, including Git (needed for cloning), curl for healthchecks, and build tools
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git curl build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Clone the GitHub repository from the main branch into /app
+RUN git clone --branch main https://github.com/Sarakael78/DoctorCodebase.git /app
+
+# Install Python dependencies from the cloned repository’s requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Expose the Gradio default port (7860)
+EXPOSE 4444
+
+# Set environment variables for Gradio
+ENV GRADIO_SERVER_NAME=0.0.0.0
+ENV GRADIO_SERVER_PORT=4444
+
+# Healthcheck to ensure the Gradio app is running
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:4444/ || exit 1
+
+# Run the application
+CMD ["python", "main.py"]

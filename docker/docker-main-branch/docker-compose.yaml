@@ -1,0 +1,17 @@
+# this version clones the latest main branch from github but otherwise remains the same
+
+version: "3.9"  # Docker Compose file version  
+
+services:
+  doctor-codebase:
+    container_name: doctor-codebase:latestcontainer
+    image: doctor-codebase_image:latestbuild
+      context: .           # Use the docker-main-branch folder as the build context
+      dockerfile: Dockerfile  # This Dockerfile will clone the repository from GitHub
+    ports:
+      - "4444:4444"        # Map port 4444 on the host to port 4444 in the container
+    volumes:
+      - "d:/DC:/app/DC"     # Mount your Windows folder D:\DC (and all its subfolders) into /app/DC
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=4444

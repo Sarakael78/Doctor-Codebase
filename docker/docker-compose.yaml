@@ -2,6 +2,8 @@ version: "3.9"  # Docker Compose file version
 
 services:
   doctorcodebase:
+    container_name: doccodebase_downloaded
+    image: doccodebase_image:downloaded
     build:
       context: ..                      # Use the repository root as the build context
       dockerfile: docker/Dockerfile     # Specify the location of the Dockerfile
