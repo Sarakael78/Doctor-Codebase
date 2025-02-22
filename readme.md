@@ -84,7 +84,7 @@ Depending on the selected options, the script will generate:
 To run the script in CLI mode and generate all output files:
 ```bash
 python main.py --cli [root_dir]
-
+  ```
 ## Usage
 
 - **root_dir (optional):** This is the path to the root directory of your codebase. If you do not provide this argument, the script will default to using the current working directory.
