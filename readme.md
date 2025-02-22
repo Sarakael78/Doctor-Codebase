@@ -85,12 +85,7 @@ To run the script in CLI mode and generate all output files:
 ```bash
 python main.py --cli [root_dir]
 
-
 ## Usage
-To run the script, use the following command:
-```bash
-python main.py [root_dir]
-```
 
 - **root_dir (optional):** This is the path to the root directory of your codebase. If you do not provide this argument, the script will default to using the current working directory.
 
